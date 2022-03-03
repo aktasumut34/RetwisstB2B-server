@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `ProductVariant` ADD COLUMN `boxPerPallet` INTEGER NOT NULL DEFAULT 0,
+    ADD COLUMN `productPerBox` INTEGER NOT NULL DEFAULT 0;

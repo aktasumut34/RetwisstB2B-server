@@ -1,0 +1,335 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int             @id @default(autoincrement())
+  name           String
+  email          String
+  password       String
+  roleId         Int
+  Tokens         Token[]
+  Addresses      Address[]
+  Phones         Phone[]
+  Role           Role            @relation(fields: [roleId], references: [id])
+  CartItems      CartItem[]
+  Tickets        Ticket[]
+  TicketMessages TicketMessage[]
+  Orders         Order[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime?       @default(now())
+}
+
+model Role {
+  id        Int       @id @default(autoincrement())
+  name      String
+  users     User[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+}
+
+model Ticket {
+  id               Int             @id @default(autoincrement())
+  user_id          Int
+  user             User            @relation(fields: [user_id], references: [id])
+  ticket_status_id Int
+  subject          String          @db.Text()
+  TicketMessages   TicketMessage[]
+  TicketStatus     TicketStatus    @relation(fields: [ticket_status_id], references: [id])
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime?       @default(now())
+}
+
+model TicketStatus {
+  id        Int       @id @default(autoincrement())
+  name      String
+  Tickets   Ticket[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+}
+
+model TicketMessage {
+  id                Int                @id @default(autoincrement())
+  ticket_id         Int
+  Ticket            Ticket             @relation(fields: [ticket_id], references: [id])
+  user_id           Int
+  user              User               @relation(fields: [user_id], references: [id])
+  read              Boolean            @default(false)
+  message           String             @db.LongText()
+  TicketAttachments TicketAttachment[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime?          @default(now())
+}
+
+model TicketAttachment {
+  id                Int           @id @default(autoincrement())
+  file              String
+  ticket_message_id Int
+  TicketMessage     TicketMessage @relation(fields: [ticket_message_id], references: [id])
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime?     @default(now())
+}
+
+model Address {
+  id        Int       @id @default(autoincrement())
+  name      String
+  country   String
+  street    String
+  city      String
+  state     String
+  zip       String
+  user_id   Int
+  User      User      @relation(fields: [user_id], references: [id])
+  Shippings Order[]   @relation(name: "ShippingAddress")
+  Billings  Order[]   @relation(name: "BillingAddress")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+}
+
+model Phone {
+  id        Int       @id @default(autoincrement())
+  number    String    @unique
+  user_id   Int
+  faCode    String
+  verified  Boolean   @default(false)
+  User      User      @relation(fields: [user_id], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+}
+
+model Token {
+  id        Int       @id @default(autoincrement())
+  token     String    @db.Text()
+  user_id   Int
+  User      User      @relation(fields: [user_id], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+}
+
+model Language {
+  id                       Int                       @id @default(autoincrement())
+  name                     String
+  code                     String                    @unique
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime?                 @default(now())
+  ProductDescriptions      ProductDescription[]
+  CategoryDescriptions     CategoryDescription[]
+  FrequentlyAskedQuestions FrequentlyAskedQuestion[]
+}
+
+model Category {
+  id                   Int                   @id @default(autoincrement())
+  slug                 String                @unique
+  parent_id            Int?
+  Parent               Category?             @relation("Parent", fields: [parent_id], references: [id])
+  Children             Category[]            @relation("Parent")
+  Products             ProductCategory[]
+  CategoryDescriptions CategoryDescription[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime?             @default(now())
+}
+
+model CategoryDescription {
+  id          Int       @id @default(autoincrement())
+  category_id Int
+  language_id Int
+  Language    Language  @relation(fields: [language_id], references: [id])
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+  Category    Category  @relation(fields: [category_id], references: [id])
+}
+
+model Product {
+  id                  Int                  @id @default(autoincrement())
+  model               String
+  slug                String               @unique
+  ProductDescriptions ProductDescription[]
+  ProductImages       ProductImage[]
+  ProductOptions      ProductOption[]
+  ProductVariants     ProductVariant[]
+  Categories          ProductCategory[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime?            @default(now())
+}
+
+model ProductCategory {
+  id          Int       @id @default(autoincrement())
+  product_id  Int
+  category_id Int
+  Product     Product   @relation(fields: [product_id], references: [id])
+  Category    Category  @relation(fields: [category_id], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+}
+
+model ProductDescription {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String    @db.LongText()
+  language_id Int
+  product_id  Int
+  Language    Language  @relation(fields: [language_id], references: [id])
+  Product     Product   @relation(fields: [product_id], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+}
+
+model ProductImage {
+  id         Int       @id @default(autoincrement())
+  image      String
+  product_id Int
+  sortOrder  Int
+  Product    Product   @relation(fields: [product_id], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @default(now())
+}
+
+model Option {
+  id                         Int                         @id @default(autoincrement())
+  name                       String
+  ProductOptions             ProductOption[]
+  ProductVariantOptionValues ProductVariantOptionValue[]
+  createdAt                  DateTime                    @default(now())
+  updatedAt                  DateTime?                   @default(now())
+}
+
+model ProductOption {
+  id         Int       @id @default(autoincrement())
+  product_id Int
+  option_id  Int
+  Product    Product   @relation(fields: [product_id], references: [id])
+  Option     Option    @relation(fields: [option_id], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @default(now())
+}
+
+model ProductVariant {
+  id                         Int                         @id @default(autoincrement())
+  product_id                 Int
+  model                      String
+  price                      Float                       @default(0) @db.Float()
+  productPerBox              Int                         @default(0)
+  boxPerPallet               Int                         @default(0)
+  Product                    Product                     @relation(fields: [product_id], references: [id])
+  Images                     ProductVariantImage[]
+  ProductVariantOptionValues ProductVariantOptionValue[]
+  CartItems                  CartItem[]
+  OrderItems                 OrderItem[]
+  createdAt                  DateTime                    @default(now())
+  updatedAt                  DateTime?                   @default(now())
+}
+
+model ProductVariantImage {
+  id             Int            @id @default(autoincrement())
+  image          String
+  variant_id     Int
+  sortOrder      Int
+  ProductVariant ProductVariant @relation(fields: [variant_id], references: [id])
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime?      @default(now())
+}
+
+model ProductVariantOptionValue {
+  id             Int            @id @default(autoincrement())
+  variant_id     Int
+  option_id      Int
+  value          String
+  ProductVariant ProductVariant @relation(fields: [variant_id], references: [id])
+  Option         Option         @relation(fields: [option_id], references: [id])
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime?      @default(now())
+}
+
+model CartItem {
+  id         Int            @id @default(autoincrement())
+  user_id    Int
+  variant_id Int
+  quantity   Int
+  User       User           @relation(fields: [user_id], references: [id])
+  Variant    ProductVariant @relation(fields: [variant_id], references: [id])
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime?      @default(now())
+}
+
+model FrequentlyAskedQuestion {
+  id          Int       @id @default(autoincrement())
+  question    String
+  answer      String    @db.LongText()
+  language_id Int
+  Language    Language  @relation(fields: [language_id], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+}
+
+model ShippingMethod {
+  id          Int       @id @default(autoincrement())
+  name        String
+  acronym     String
+  description String    @db.LongText()
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+  Order       Order[]   @relation("ShippingMethod")
+}
+
+model Order {
+  id                   Int                  @id @default(autoincrement())
+  user_id              Int
+  status               String
+  totalPrice           Float                @default(0) @db.Float()
+  shipping_address_id  Int
+  billing_address_id   Int
+  shipping_method_id   Int
+  order_status_id      Int
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime?            @default(now())
+  ShippingAddress      Address              @relation(fields: [shipping_address_id], references: [id], name: "ShippingAddress")
+  BillingAddress       Address              @relation(fields: [billing_address_id], references: [id], name: "BillingAddress")
+  ShippingMethod       ShippingMethod       @relation(fields: [shipping_method_id], references: [id], name: "ShippingMethod")
+  OrderStatus          OrderStatus          @relation(fields: [order_status_id], references: [id], name: "OrderStatus")
+  OrderStatusHistories OrderStatusHistory[]
+  OrderItems           OrderItem[]
+  User                 User                 @relation(fields: [user_id], references: [id])
+}
+
+model OrderItem {
+  id         Int            @id @default(autoincrement())
+  unitPrice  Float          @default(0) @db.Float()
+  quantity   Int
+  order_id   Int
+  variant_id Int
+  Order      Order          @relation(fields: [order_id], references: [id])
+  Variant    ProductVariant @relation(fields: [variant_id], references: [id])
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime?      @default(now())
+}
+
+model OrderStatus {
+  id                   Int                  @id @default(autoincrement())
+  name                 String
+  description          String               @db.LongText()
+  type                 String               @default("danger")
+  Orders               Order[]              @relation("OrderStatus")
+  OrderStatusHistories OrderStatusHistory[]
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime?            @default(now())
+}
+
+model OrderStatusHistory {
+  id          Int         @id @default(autoincrement())
+  order_id    Int
+  status_id   Int
+  description String      @db.LongText()
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime?   @default(now())
+  Order       Order       @relation(fields: [order_id], references: [id])
+  OrderStatus OrderStatus @relation(fields: [status_id], references: [id])
+}
