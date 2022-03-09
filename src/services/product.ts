@@ -40,6 +40,9 @@ export default {
               include: {
                 Option: true,
               },
+              orderBy: {
+                option_id: "asc",
+              },
             },
             Images: {
               orderBy: {
@@ -89,6 +92,7 @@ export default {
       });
       return {
         id: p.id,
+        model: p.model,
         price: p.price,
         productPerBox: p.productPerBox,
         boxPerPallet: p.boxPerPallet,

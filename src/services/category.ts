@@ -10,6 +10,9 @@ export default {
         CategoryDescriptions: true,
         slug: true,
       },
+      orderBy: {
+        id: "asc",
+      },
     });
   },
   products: async ({
@@ -127,7 +130,7 @@ export default {
         },
       },
       orderBy: {
-        id: "desc",
+        id: "asc",
       },
     });
     return products;

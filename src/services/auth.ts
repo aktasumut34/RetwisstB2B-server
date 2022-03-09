@@ -48,14 +48,26 @@ export default {
       refreshToken = null;
     if (!req.email || !req.password) {
       errors.push({
-        message: "Please provide email and password",
+        message: "Please provide email and password!",
         type: "auth",
       });
     } else {
       const user = await prisma.user.findFirst({ where: { email: req.email } });
       if (!user) {
         errors.push({
-          message: "User not found",
+          message: "User not found with provided email!",
+          type: "email",
+        });
+      } else if (user.status === -1) {
+        errors.push({
+          message:
+            "Your account has been blocked! Please contact with us via email!",
+          type: "email",
+        });
+      } else if (user.status === 0) {
+        errors.push({
+          message:
+            "Your account hasn't been approved yet! Our sales team will contact you soon.",
           type: "email",
         });
       } else {
@@ -63,7 +75,7 @@ export default {
           const result = await hashCompare(req.password, user.password);
           if (!result) {
             errors.push({
-              message: "Invalid password",
+              message: "Password was incorrect!",
               type: "password",
             });
           } else {

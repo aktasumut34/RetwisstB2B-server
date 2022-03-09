@@ -48,6 +48,7 @@ export const verifyToken = async (token: string): Promise<User | null> => {
       const user = await prisma.user.findFirst({
         where: {
           id: decoded.user.id,
+          status: 1,
         },
       });
       if (user) {

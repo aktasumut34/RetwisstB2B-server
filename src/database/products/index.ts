@@ -1,0 +1,12 @@
+export { default as ribbon } from "./ribbon";
+export { default as ribbonLurex } from "./ribbon-lurex";
+export { default as xxlace } from "./xxlace";
+export { default as barbante } from "./barbante";
+export { default as chainyCotton } from "./chainy-cotton";
+export { default as chainyCottonMouline } from "./chainy-cotton-mouline";
+export { default as slimCotton } from "./slim-cotton";
+export { default as tShirtYarn } from "./t-shirt-yarn";
+export { default as braidRainbow } from "./braid-rainbow";
+export { default as softCake } from "./soft-cake";
+export { default as chainyCottonCake } from "./chainy-cotton-cake";
+export { default as chainyPolyester } from "./chainy-polyester";

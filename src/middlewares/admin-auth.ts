@@ -10,6 +10,7 @@ export const admin = async (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.user?.roleId === 1337) next();
-  else res.status(401).json({ error: "Unauthorized" });
+  if (req.user?.roleId === 1337) {
+    next();
+  } else res.status(401).json({ error: "Unauthorized" });
 };
