@@ -17,7 +17,7 @@ export default {
             TicketMessages: {
               include: {
                 TicketAttachments: true,
-                user: true,
+                User: true,
               },
               orderBy: {
                 createdAt: "desc",

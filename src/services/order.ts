@@ -29,6 +29,12 @@ export default {
             }),
           },
         },
+        OrderStatusHistories: {
+          create: {
+            description: "Order created.",
+            status_id: 1,
+          },
+        },
       },
     });
     return order;
@@ -88,7 +94,14 @@ export default {
         },
         OrderStatus: true,
         ShippingAddress: true,
-        OrderStatusHistories: true,
+        OrderStatusHistories: {
+          include: {
+            OrderStatus: true,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
       },
     });
     return order;

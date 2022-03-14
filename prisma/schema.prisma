@@ -40,7 +40,7 @@ model Role {
 model Ticket {
   id               Int             @id @default(autoincrement())
   user_id          Int
-  user             User            @relation(fields: [user_id], references: [id])
+  User             User            @relation(fields: [user_id], references: [id])
   ticket_status_id Int
   subject          String          @db.Text()
   TicketMessages   TicketMessage[]
@@ -62,7 +62,7 @@ model TicketMessage {
   ticket_id         Int
   Ticket            Ticket             @relation(fields: [ticket_id], references: [id], onDelete: Cascade)
   user_id           Int
-  user              User               @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  User              User               @relation(fields: [user_id], references: [id], onDelete: Cascade)
   read              Boolean            @default(false)
   message           String             @db.LongText()
   TicketAttachments TicketAttachment[]

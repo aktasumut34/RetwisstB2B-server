@@ -1,5 +1,5 @@
 export default {
-  model: "Soft -250GCake",
+  model: "Soft Cake",
   slug: "soft-cake",
   Descriptions: [
     {

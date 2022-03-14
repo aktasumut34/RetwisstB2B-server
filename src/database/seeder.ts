@@ -39,7 +39,7 @@ const main = async () => {
       status: 1,
       email: "u.akts1@gmail.com",
       password,
-      name: faker.name.firstName(),
+      name: "Umut Aktaş",
       roleId: 1337,
       Addresses: {
         createMany: {

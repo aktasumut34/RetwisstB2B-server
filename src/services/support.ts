@@ -23,13 +23,13 @@ export default {
         TicketMessages: {
           include: {
             TicketAttachments: true,
-            user: true,
+            User: true,
           },
           orderBy: {
             createdAt: "desc",
           },
         },
-        user: true,
+        User: true,
         TicketStatus: true,
       },
     });
