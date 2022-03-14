@@ -32,7 +32,6 @@
     "nodemon": "^2.0.15",
     "rate-limiter-flexible": "^2.3.6",
     "twilio": "^3.73.1",
-    "tsc": "^2.0.4",
     "typescript": "^4.5.5",
     "rimraf": "^3.0.2"
   },
