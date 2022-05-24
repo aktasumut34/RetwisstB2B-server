@@ -1,6 +1,9 @@
 import { Phone, PrismaClient, User } from "@prisma/client";
 import twilio from "twilio";
 import UserService from "./user";
+import dotenv from "dotenv";
+
+dotenv.config();
 const account_sid = process.env.TWILIO_ACCOUNT_SID;
 const auth_token = process.env.TWILIO_AUTH_TOKEN;
 const messaging_service = process.env.TWILIO_MESSAGING_SERVICE;
