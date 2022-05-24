@@ -41,6 +41,7 @@ export default {
             },
           },
         },
+        Currency: true,
       },
     });
     if (!userDetailed) {
@@ -162,5 +163,24 @@ export default {
   getAvailableShippingMethods: async () => {
     const shippingMethods = await prisma.shippingMethod.findMany({});
     return { shippingMethods };
+  },
+  allCurrencies: async () => {
+    return await prisma.currency.findMany({});
+  },
+  changeCurrency: async (user: User, currency_id: number) => {
+    const errors = [];
+    const userUpdated = await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        currency_id,
+      },
+    });
+    if (!userUpdated) {
+      errors.push({
+        message: "User not found",
+        type: "auth",
+      });
+    }
+    return { user: userUpdated, errors };
   },
 };

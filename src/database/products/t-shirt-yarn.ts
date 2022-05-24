@@ -146,7 +146,7 @@ export default {
         { option_id: 2, value: "750g" },
         {
           option_id: 1,
-          value: "Yellow Shades",
+          value: "Yellow / Orange Shades",
         },
       ],
       ProductImages: [
@@ -355,7 +355,7 @@ export default {
         { option_id: 2, value: "650g" },
         {
           option_id: 1,
-          value: "Yellow Shades",
+          value: "Yellow / Orange Shades",
         },
       ],
       ProductImages: [
@@ -564,7 +564,7 @@ export default {
         { option_id: 2, value: "450g" },
         {
           option_id: 1,
-          value: "Yellow Shades",
+          value: "Yellow / Orange Shades",
         },
       ],
       ProductImages: [
@@ -773,7 +773,7 @@ export default {
         { option_id: 2, value: "350g" },
         {
           option_id: 1,
-          value: "Yellow Shades",
+          value: "Yellow / Orange Shades",
         },
       ],
       ProductImages: [

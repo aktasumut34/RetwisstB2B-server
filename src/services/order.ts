@@ -7,23 +7,31 @@ export default {
     address_id: number,
     shipping_method_id: number
   ) => {
+    const u = await prisma.user.findFirst({
+      where: { id: user.id },
+      include: {
+        Currency: true,
+      },
+    });
     const order = await prisma.order.create({
       data: {
         user_id: user.id,
+        currency_id: u?.Currency?.id || 1,
         billing_address_id: address_id,
         shipping_address_id: address_id,
         order_status_id: 1,
         shipping_method_id: shipping_method_id,
         status: "pending",
-        totalPrice: items.reduce((acc, item) => {
-          return acc + item.unitPrice * item.quantity;
-        }, 0),
+        totalPrice:
+          items.reduce((acc, item) => {
+            return acc + item.unitPrice * item.quantity;
+          }, 0) * (u?.Currency?.multiplier || 1),
         OrderItems: {
           createMany: {
             data: items.map((item) => {
               return {
                 variant_id: item.variant_id,
-                unitPrice: item.unitPrice,
+                unitPrice: item.unitPrice * (u?.Currency?.multiplier || 1),
                 quantity: item.quantity,
               };
             }),
@@ -61,6 +69,8 @@ export default {
         OrderStatus: true,
         ShippingAddress: true,
         OrderStatusHistories: true,
+        OrderFiles: true,
+        Currency: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -102,8 +112,33 @@ export default {
             createdAt: "desc",
           },
         },
+        Currency: true,
+        OrderFiles: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
+        OrderExpenses: {
+          include: {
+            Expense: true,
+          },
+        },
       },
     });
     return order;
+  },
+  uploadFile: async (
+    order_id: number,
+    file_path: string,
+    description: string
+  ) => {
+    const order_file = await prisma.orderFile.create({
+      data: {
+        order_id,
+        file: file_path.replace("public", "http://localhost:3100"),
+        description,
+      },
+    });
+    return order_file;
   },
 };

@@ -46,7 +46,7 @@ export default {
     user: User
   ): Promise<boolean> => {
     const { phone } = await UserService.createPhone(user, { number });
-    return phone ? await send2FACode(user, phone) : false;
+    return !!phone;
   },
   verifyPhone: async (number: string, faCode: string): Promise<boolean> => {
     const phone = await prisma.phone.updateMany({

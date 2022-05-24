@@ -10,7 +10,7 @@ export const me = async (req: IAuthReqeust, res: Response) => {
   const { errors, user } = await UserService.me(req.user);
   const token = req.token;
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ user, token });
 };
@@ -23,7 +23,7 @@ export const updateOrCreateAddress = async (
   const address = req.body;
   const { errors } = await UserService.updateOrCreateAddress(req.user, address);
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true });
 };
@@ -43,7 +43,7 @@ export const removeAddress = async (req: IAuthReqeust, res: Response) => {
   const address_id = req.body.address_id;
   const { errors } = await UserService.removeAddress(req.user, address_id);
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true });
 };
@@ -53,7 +53,7 @@ export const removePhone = async (req: IAuthReqeust, res: Response) => {
   const phone_id = req.body.phone_id;
   const { errors } = await UserService.removePhone(req.user, phone_id);
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true });
 };
@@ -67,4 +67,25 @@ export const getAvailableShippingMethods = async (
   if (shippingMethods?.length) {
     return res.status(200).json({ shippingMethods });
   }
+};
+
+export const allCurrencies = async (req: IAuthReqeust, res: Response) => {
+  if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+  const currencies = await UserService.allCurrencies();
+  if (currencies?.length) {
+    return res.status(200).json({ currencies });
+  }
+};
+
+export const changeCurrency = async (req: IAuthReqeust, res: Response) => {
+  if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+  const currency_id = req.body.currency_id;
+  const { errors, user } = await UserService.changeCurrency(
+    req.user,
+    currency_id
+  );
+  if (errors?.length) {
+    return res.status(200).json({ errors });
+  }
+  return res.status(200).json({ user, success: true });
 };

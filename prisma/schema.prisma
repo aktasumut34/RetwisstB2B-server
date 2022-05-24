@@ -16,17 +16,35 @@ model User {
   email          String
   password       String
   roleId         Int
-  status         Int            @default(0)
+  currency_id    Int
+  status         Int             @default(0)
+  company_name   String?
+  company_address String?
+  company_country String?
+  company_employees Int?
   Tokens         Token[]
   Addresses      Address[]
   Phones         Phone[]
   Role           Role            @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  Currency       Currency        @relation(fields: [currency_id], references: [id], onDelete: Cascade)
   CartItems      CartItem[]
   Tickets        Ticket[]
   TicketMessages TicketMessage[]
   Orders         Order[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime?       @default(now())
+}
+
+model Currency {
+  id         Int      @id @default(autoincrement())
+  name       String
+  code       String
+  symbol     String
+  multiplier Float    @default(1) @db.Float()
+  Users      User[]
+  Orders     Order[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
 }
 
 model Role {
@@ -282,6 +300,15 @@ model ShippingMethod {
   Order       Order[]   @relation("ShippingMethod")
 }
 
+model Expense {
+  id            Int            @id @default(autoincrement())
+  name          String
+  type          String         @default("Shipping")
+  OrderExpenses OrderExpense[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime?      @default(now())
+}
+
 model Order {
   id                   Int                  @id @default(autoincrement())
   user_id              Int
@@ -291,6 +318,7 @@ model Order {
   billing_address_id   Int
   shipping_method_id   Int
   order_status_id      Int
+  currency_id          Int
   createdAt            DateTime             @default(now())
   updatedAt            DateTime?            @default(now())
   ShippingAddress      Address              @relation(fields: [shipping_address_id], references: [id], name: "ShippingAddress", onDelete: Cascade)
@@ -299,7 +327,33 @@ model Order {
   OrderStatus          OrderStatus          @relation(fields: [order_status_id], references: [id], name: "OrderStatus", onDelete: Cascade)
   OrderStatusHistories OrderStatusHistory[]
   OrderItems           OrderItem[]
+  OrderFiles           OrderFile[]
+  OrderExpenses        OrderExpense[]
+  Currency             Currency             @relation(fields: [currency_id], references: [id], onDelete: Cascade)
   User                 User                 @relation(fields: [user_id], references: [id])
+}
+
+model OrderExpense {
+  id          Int       @id @default(autoincrement())
+  order_id    Int
+  expense_id  Int
+  price       Float     @default(0) @db.Float()
+  quantity    Int       @default(0)
+  description String?   @db.LongText()
+  Expense     Expense   @relation(fields: [expense_id], references: [id], onDelete: Cascade)
+  Order       Order     @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+}
+
+model OrderFile {
+  id          Int       @id @default(autoincrement())
+  order_id    Int
+  file        String
+  description String?   @db.LongText()
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @default(now())
+  Order       Order     @relation(fields: [order_id], references: [id], onDelete: Cascade)
 }
 
 model OrderItem {

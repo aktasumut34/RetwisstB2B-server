@@ -95,11 +95,16 @@ export default {
         },
         Role: true,
         Tokens: true,
+        Currency: true,
         email: true,
         name: true,
         createdAt: true,
         updatedAt: true,
         status: true,
+        company_address: true,
+        company_country: true,
+        company_employees: true,
+        company_name: true,
         id: true,
       },
     });
@@ -230,6 +235,16 @@ export default {
     });
     return products;
   },
+  allVariants: async () => {
+    const variants = await prisma.productVariant.findMany({
+      select: {
+        id: true,
+        model: true,
+        price: true,
+      },
+    });
+    return variants;
+  },
   createProduct: async ({
     slug = "",
     name = "",
@@ -328,6 +343,8 @@ export default {
             createdAt: "desc",
           },
         },
+        OrderStatus: true,
+        Currency: true,
         OrderItems: {
           include: {
             Variant: {
@@ -381,6 +398,9 @@ export default {
               },
             },
           },
+          orderBy: {
+            quantity: "desc",
+          },
         },
         OrderStatus: true,
         OrderStatusHistories: {
@@ -393,9 +413,17 @@ export default {
         },
         ShippingMethod: true,
         ShippingAddress: true,
-      },
-      orderBy: {
-        createdAt: "desc",
+        OrderFiles: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
+        OrderExpenses: {
+          include: {
+            Expense: true,
+          },
+        },
+        Currency: true,
       },
     });
   },
@@ -405,14 +433,26 @@ export default {
         order_id: parseInt(id),
       },
     });
+    const orderExpenses = (
+      await prisma.orderExpense.findMany({
+        where: {
+          order_id: parseInt(id),
+        },
+        select: {
+          price: true,
+          quantity: true,
+        },
+      })
+    ).reduce((prev, cur) => prev + cur.price * cur.quantity, 0);
     await prisma.order.update({
       where: {
         id: parseInt(id),
       },
       data: {
-        totalPrice: Object.keys(items).reduce((cur, prev) => {
-          return cur + items[prev].unitPrice * items[prev].quantity;
-        }, 0),
+        totalPrice:
+          Object.keys(items).reduce((prev, cur) => {
+            return prev + items[cur].unitPrice * items[cur].quantity;
+          }, 0) + orderExpenses,
       },
     });
     return await prisma.orderItem.createMany({
@@ -425,6 +465,50 @@ export default {
               variant_id: parseInt(key),
               quantity: parseInt(items[key].quantity),
               unitPrice: parseFloat(items[key].unitPrice),
+            };
+          }),
+      ],
+    });
+  },
+  updateOrderExpenses: async (id: string, items: any) => {
+    await prisma.orderExpense.deleteMany({
+      where: {
+        order_id: parseInt(id),
+      },
+    });
+    const orderItems = (
+      await prisma.orderItem.findMany({
+        where: {
+          order_id: parseInt(id),
+        },
+        select: {
+          unitPrice: true,
+          quantity: true,
+        },
+      })
+    ).reduce((prev, cur) => prev + cur.unitPrice * cur.quantity, 0);
+    await prisma.order.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        totalPrice:
+          Object.keys(items).reduce((cur, prev) => {
+            return cur + items[prev].price * items[prev].quantity;
+          }, 0) + orderItems,
+      },
+    });
+    return await prisma.orderExpense.createMany({
+      data: [
+        ...Object.keys(items)
+          .filter((item) => items[item].quantity > 0)
+          .map((key) => {
+            return {
+              order_id: parseInt(id),
+              expense_id: parseInt(key),
+              quantity: parseInt(items[key].quantity),
+              price: parseFloat(items[key].price),
+              description: items[key].description,
             };
           }),
       ],
@@ -454,7 +538,84 @@ export default {
       },
     });
   },
-
+  allExpenses: async () => {
+    const expenses = await prisma.expense.findMany({
+      select: {
+        id: true,
+        name: true,
+        type: true,
+      },
+    });
+    return expenses;
+  },
+  addProductToOrder: async (
+    order_id: number,
+    variant_id: number,
+    quantity: number,
+    unitPrice: number
+  ) => {
+    await prisma.order.update({
+      where: {
+        id: order_id,
+      },
+      data: {
+        totalPrice: {
+          increment: unitPrice * quantity,
+        },
+      },
+    });
+    const orderItem = await prisma.orderItem.findFirst({
+      where: {
+        order_id: order_id,
+        variant_id: variant_id,
+      },
+    });
+    return quantity > 0 && !orderItem
+      ? await prisma.orderItem.create({
+          data: {
+            order_id,
+            variant_id,
+            quantity,
+            unitPrice,
+          },
+        })
+      : false;
+  },
+  addExpenseToOrder: async (
+    order_id: number,
+    expense_id: number,
+    quantity: number,
+    price: number,
+    description: string
+  ) => {
+    await prisma.order.update({
+      where: {
+        id: order_id,
+      },
+      data: {
+        totalPrice: {
+          increment: price * quantity,
+        },
+      },
+    });
+    const orderExpense = await prisma.orderExpense.findFirst({
+      where: {
+        order_id: order_id,
+        expense_id: expense_id,
+      },
+    });
+    return quantity > 0 && !orderExpense
+      ? await prisma.orderExpense.create({
+          data: {
+            order_id,
+            expense_id,
+            quantity,
+            price,
+            description,
+          },
+        })
+      : false;
+  },
   // Support
   allTickets: async () => {
     const status = await prisma.ticketStatus.findMany({

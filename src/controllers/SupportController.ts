@@ -8,7 +8,7 @@ export const ticketStatuses = async (req: IAuthReqeust, res: Response) => {
   if (!req.user) return res.status(401).json({ error: "Unauthorized" });
   const { errors, ticketStatuses } = await SupportService.ticketStatuses();
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ ticketStatuses });
 };
@@ -20,7 +20,7 @@ export const getTicket = async (req: IAuthReqeust, res: Response) => {
     req.user
   );
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ ticket });
 };
@@ -32,7 +32,7 @@ export const createTicket = async (req: IAuthReqeust, res: Response) => {
     req.body.ticket
   );
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true, ticket });
 };
@@ -45,7 +45,7 @@ export const sendMessage = async (req: IAuthReqeust, res: Response) => {
     req.user
   );
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true });
 };
@@ -58,7 +58,7 @@ export const markTicket = async (req: IAuthReqeust, res: Response) => {
     req.user
   );
   if (errors?.length) {
-    return res.status(400).json({ errors });
+    return res.status(200).json({ errors });
   }
   return res.status(200).json({ success: true });
 };

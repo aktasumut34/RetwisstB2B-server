@@ -18,7 +18,8 @@
       "bcrypt",
       "cors",
       "cookie-parser",
-      "express-slow-down"
+      "express-slow-down",
+      "multer"
     ]
   }
 }

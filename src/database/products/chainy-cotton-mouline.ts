@@ -50,7 +50,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "White",
+          value: "Tuna",
         },
       ],
       ProductImages: [
@@ -69,7 +69,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Black",
+          value: "Ocean Blue",
         },
       ],
       ProductImages: [
@@ -88,7 +88,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Grey",
+          value: "Deep Ocean Blue",
         },
       ],
       ProductImages: [
@@ -107,7 +107,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Light Grey",
+          value: "Orange",
         },
       ],
       ProductImages: [
@@ -126,7 +126,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Jeans Blue",
+          value: "Burgundy",
         },
       ],
       ProductImages: [
@@ -145,7 +145,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Smoked",
+          value: "Lavender",
         },
       ],
       ProductImages: [
@@ -164,7 +164,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Sugar White",
+          value: "Grass Green",
         },
       ],
       ProductImages: [
@@ -183,7 +183,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Beige",
+          value: "Soft Pink",
         },
       ],
       ProductImages: [
@@ -202,7 +202,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Dark Beige",
+          value: "Khaki",
         },
       ],
       ProductImages: [
@@ -221,7 +221,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Soft Yellow",
+          value: "Sky Blue",
         },
       ],
       ProductImages: [
@@ -240,7 +240,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Brown",
+          value: "Military Brown",
         },
       ],
       ProductImages: [
@@ -259,7 +259,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Navy Blue",
+          value: "Rock Gray",
         },
       ],
       ProductImages: [
@@ -278,7 +278,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Mint Green",
+          value: "Bloom",
         },
       ],
       ProductImages: [
@@ -297,7 +297,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Pistachio Green",
+          value: "Ivy",
         },
       ],
       ProductImages: [
@@ -316,7 +316,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Benetton",
+          value: "Clay",
         },
       ],
       ProductImages: [
@@ -335,7 +335,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Khaki",
+          value: "Soft Blue",
         },
       ],
       ProductImages: [
@@ -354,7 +354,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Baby Blue",
+          value: "Blood Red",
         },
       ],
       ProductImages: [
@@ -373,7 +373,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Turquoise",
+          value: "Lilac",
         },
       ],
       ProductImages: [
@@ -392,7 +392,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Saxe Blue",
+          value: "River Blue",
         },
       ],
       ProductImages: [
@@ -403,7 +403,7 @@ export default {
       ],
     },
     {
-      model: "7119",
+      model: "7120",
       price: 36.0,
       productPerBox: 18,
       boxPerPallet: 96,
@@ -411,7 +411,7 @@ export default {
         { option_id: 2, value: "250g" },
         {
           option_id: 1,
-          value: "Saxe Blue",
+          value: "Autumn Yellow",
         },
       ],
       ProductImages: [

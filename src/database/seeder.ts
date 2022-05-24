@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import bcyrpt from "bcrypt";
+import * as bcyrpt from "bcrypt";
 import { faker } from "@faker-js/faker";
 import {
   barbante,
@@ -14,6 +14,10 @@ import {
   softCake,
   braidRainbow,
   chainyPolyester,
+  woolCake,
+  macrameRope,
+  macrameBraided,
+  macrameString,
 } from "./products";
 
 const prisma = new PrismaClient();
@@ -32,11 +36,28 @@ const main = async () => {
       },
     ],
   });
+  // Create currencies
+  const currencies = [
+    { name: "United States Dollar", code: "USD", symbol: "$", multiplier: 1 },
+    {
+      name: "Great Britain Pound",
+      code: "GBP",
+      symbol: "£",
+      multiplier: 0.76370469,
+    },
+    { name: "Euro", code: "EUR", symbol: "€", multiplier: 0.90770975 },
+  ];
+  for (let i = 0; i < currencies.length; i++) {
+    await prisma.currency.create({
+      data: currencies[i],
+    });
+  }
   //Create admin
   const password = await bcyrpt.hash("secret", 10);
   await prisma.user.create({
     data: {
       status: 1,
+      currency_id: 1,
       email: "u.akts1@gmail.com",
       password,
       name: "Umut Aktaş",
@@ -78,6 +99,7 @@ const main = async () => {
     const password = await bcyrpt.hash("secret", 10);
     await prisma.user.create({
       data: {
+        currency_id: 1,
         status: 0,
         email: faker.internet.email(),
         password,
@@ -230,7 +252,7 @@ const main = async () => {
       });
     }
   }
-  //Create Shipping Methods
+  //Create Shipping Methods && Expenses
   const shippingMethods = [
     {
       name: "Ex Works",
@@ -271,6 +293,12 @@ const main = async () => {
         description: shippingMethods[i].description,
       },
     });
+    await prisma.expense.create({
+      data: {
+        name: shippingMethods[i].name + " Expense",
+        type: "Shipping",
+      },
+    });
   }
 
   //Create Order Statuses
@@ -306,6 +334,7 @@ const main = async () => {
     data: [
       { id: 1, name: "Color" },
       { id: 2, name: "Size" },
+      { id: 3, name: "Thickness" },
     ],
   });
   for (let i = 0; i < orderStatuses.length; i++) {
@@ -317,6 +346,7 @@ const main = async () => {
       },
     });
   }
+
   const categories = [
     {
       slug: "t-shirt-yarn",
@@ -372,7 +402,7 @@ const main = async () => {
           description: `They're shiny and colorful!`,
         },
       ],
-      Products: [softCake, chainyCottonCake, braidRainbow],
+      Products: [softCake, chainyCottonCake, woolCake, braidRainbow],
     },
     {
       slug: "macrame-yarns",
@@ -388,7 +418,7 @@ const main = async () => {
           description: `They're best for making macrame!`,
         },
       ],
-      Products: [chainyPolyester],
+      Products: [macrameRope, macrameString, macrameBraided, chainyPolyester],
     },
   ];
   for (let i = 0; i < categories.length; i++) {

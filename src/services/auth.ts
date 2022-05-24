@@ -16,7 +16,12 @@ interface IAuthRequest {
   email?: string;
   password?: string;
   name?: string;
+  company_name?: string;
+  company_address?: string;
+  company_country?: string;
+  company_employees?: number;
   refreshToken?: string;
+  phone?: string;
   oldRefreshToken?: string;
 }
 async function hashPassword(password: string): Promise<string> {
@@ -113,15 +118,29 @@ export default {
           const hash = await hashPassword(req.password);
           const user = await prisma.user.create({
             data: {
+              currency_id: 1,
               email: req.email,
               password: hash,
               name: req.name,
               roleId: 1,
+              company_address: req.company_address,
+              company_country: req.company_country,
+              company_employees: req.company_employees,
+              company_name: req.company_name,
+            },
+          });
+          await prisma.phone.create({
+            data: {
+              faCode: "000",
+              number: req.phone || "",
+              user_id: user.id,
+              verified: true,
             },
           });
           token = await createToken(user);
           refreshToken = await createRefreshToken({ user });
         } catch (err) {
+          console.log(err);
           errors.push({
             message: "Error occured",
             type: "auth",

@@ -1006,7 +1006,7 @@ export default {
     {
       model: "7501-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1025,7 +1025,7 @@ export default {
     {
       model: "7502-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1044,7 +1044,7 @@ export default {
     {
       model: "7503-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1063,7 +1063,7 @@ export default {
     {
       model: "7504-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1082,7 +1082,7 @@ export default {
     {
       model: "7505-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1101,7 +1101,7 @@ export default {
     {
       model: "7506-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1120,7 +1120,7 @@ export default {
     {
       model: "7507-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1139,7 +1139,7 @@ export default {
     {
       model: "7508-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1158,7 +1158,7 @@ export default {
     {
       model: "7509-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1177,7 +1177,7 @@ export default {
     {
       model: "7510-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1196,7 +1196,7 @@ export default {
     {
       model: "7511-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1215,7 +1215,7 @@ export default {
     {
       model: "7512-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1234,7 +1234,7 @@ export default {
     {
       model: "7513-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1253,7 +1253,7 @@ export default {
     {
       model: "7514-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1272,7 +1272,7 @@ export default {
     {
       model: "7515-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1291,7 +1291,7 @@ export default {
     {
       model: "7516-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1310,7 +1310,7 @@ export default {
     {
       model: "7517-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1329,7 +1329,7 @@ export default {
     {
       model: "7518-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1348,7 +1348,7 @@ export default {
     {
       model: "7519-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1367,7 +1367,7 @@ export default {
     {
       model: "7520-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1386,7 +1386,7 @@ export default {
     {
       model: "7521-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1405,7 +1405,7 @@ export default {
     {
       model: "7522-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1424,7 +1424,7 @@ export default {
     {
       model: "7523-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1443,7 +1443,7 @@ export default {
     {
       model: "7524-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1462,7 +1462,7 @@ export default {
     {
       model: "7525-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1481,7 +1481,7 @@ export default {
     {
       model: "7526-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1500,7 +1500,7 @@ export default {
     {
       model: "7527-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1519,7 +1519,7 @@ export default {
     {
       model: "7528-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1538,7 +1538,7 @@ export default {
     {
       model: "7529-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1557,7 +1557,7 @@ export default {
     {
       model: "7530-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1576,7 +1576,7 @@ export default {
     {
       model: "7531-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1595,7 +1595,7 @@ export default {
     {
       model: "7532-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1614,7 +1614,7 @@ export default {
     {
       model: "7533-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1633,7 +1633,7 @@ export default {
     {
       model: "7534-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1652,7 +1652,7 @@ export default {
     {
       model: "7535-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1671,7 +1671,7 @@ export default {
     {
       model: "7536-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1690,7 +1690,7 @@ export default {
     {
       model: "7537-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1709,7 +1709,7 @@ export default {
     {
       model: "7538-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1728,7 +1728,7 @@ export default {
     {
       model: "7539-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1747,7 +1747,7 @@ export default {
     {
       model: "7540-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1766,7 +1766,7 @@ export default {
     {
       model: "7541-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1785,7 +1785,7 @@ export default {
     {
       model: "7542-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1804,7 +1804,7 @@ export default {
     {
       model: "7543-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1823,7 +1823,7 @@ export default {
     {
       model: "7544-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1842,7 +1842,7 @@ export default {
     {
       model: "7545-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1861,7 +1861,7 @@ export default {
     {
       model: "7546-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1880,7 +1880,7 @@ export default {
     {
       model: "7547-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1899,7 +1899,7 @@ export default {
     {
       model: "7548-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1918,7 +1918,7 @@ export default {
     {
       model: "7549-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },
@@ -1937,7 +1937,7 @@ export default {
     {
       model: "7550-500G",
       price: 53.2,
-      productPerBox: 18,
+      productPerBox: 8,
       boxPerPallet: 100,
       VariantOptionValues: [
         { option_id: 2, value: "500g" },

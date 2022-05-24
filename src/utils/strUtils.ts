@@ -1,3 +1,3 @@
 export const numberTest = (value: string): boolean => {
-  return /^[0-9]+$/.test(value);
+  return /^\d+$/.test(value) || /^\d+\.\d+$/.test(value);
 };
